@@ -1,0 +1,36 @@
+---
+title: "individual2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+str(choco) 
+head(choco)
+```
+
+## Searching for Best Chocolate
+### 1
+```{r}
+choco_ratings <- choco$Rating
+hist(choco_ratings)
+boxplot(choco_ratings)
+```
+
+```{r}
+barplot(table(choco$Location), las = 2, cex.names = 0.5)
+```
+
+
+
+### 2
+```{r}
+barplot(table(choco$Location), las = 2, cex.names = 0.5)
+```
+
+
+
