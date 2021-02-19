@@ -50,7 +50,7 @@ ratings = choco[order(ave(choco$Rating), decreasing= TRUE), ]
 ggplot(ratings, aes(x = Bean_Origin, y = Rating)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
 ```
 
-Plot is difficult to get values from, will use less values to make more clear. I have experimented with 5 different values to see which can provide important informaion without overloading the user with unneeded data points. 
+Plot is difficult to get values from, will use less values to make more clear. I have experimented with 5 different values to see which can provide important information without overloading the user with unneeded data points. 
 
 ```{r}
 ratings1 = choco[order(ave(choco$Rating), decreasing= TRUE), ]

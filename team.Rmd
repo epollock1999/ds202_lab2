@@ -1,10 +1,17 @@
 ---
 title: "team"
+author: "Emily Pollock, Nick Cory"
+date: "2/19/21"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Loading in Data
+```{r}
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
 ```
 
 ## Searching for the Best Chocolates
@@ -19,7 +26,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### 3. Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. [Hint: Think about why the scatterplot is not a very good choice for visualization here.]
 
+We can see that there is little relationship between the Rating and the Cocoa Percentage. This can be seen in the scatter plot, bot plot, and value that we get from calling the cor function. When we look at the correlation value between the two variables, we get a result of -0.151, meaning that there is an extremely weak negative connection between the two. 
 
+```{r}
+plot(choco$Rating, choco$Cocoa_Percent)
+boxplot(choco$Rating~choco$Cocoa_Percent)
+cor(choco$Rating, choco$Cocoa_Percent)
+summary(lm(Rating~Cocoa_Percent, data=choco))
+```
 
 #### 4. How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.
 
