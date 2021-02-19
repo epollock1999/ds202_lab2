@@ -34,7 +34,12 @@ barplot(table(choco_loc), las = 2, cex.names = .5)
 ```{r}
 choco_per <- choco$Cocoa_Percent
 plot(choco_ratings, choco_per)
+boxplot(choco_ratings~choco_per)
 cor(choco_ratings, choco_per)
+summary(lm(Rating~Cocoa_Percent, data=choco))
+```
+```{r}
+
 ```
 
 
