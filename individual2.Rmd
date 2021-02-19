@@ -1,5 +1,6 @@
 ---
 title: "individual2"
+author: "Nick Cory"
 output: html_document
 ---
 
@@ -14,23 +15,68 @@ head(choco)
 ```
 
 ## Searching for Best Chocolate
-### 1
+#### 1
 ```{r}
 choco_ratings <- choco$Rating
 hist(choco_ratings)
 boxplot(choco_ratings)
 ```
 
+#### 2
 ```{r}
-barplot(table(choco$Location), las = 2, cex.names = 0.5)
+choco_loc <- choco$Location
+barplot(table(choco_loc), las = 2, cex.names = .5)
 ```
 
 
 
-### 2
+#### 3
 ```{r}
-barplot(table(choco$Location), las = 2, cex.names = 0.5)
+choco_per <- choco$Cocoa_Percent
+plot(choco_ratings, choco_per)
+cor(choco_ratings, choco_per)
 ```
 
 
+#### 4
+```{r}
+library(ggplot2)
+ratings = choco[order(ave(choco$Rating), decreasing= TRUE), ]
+ggplot(ratings, aes(x = Bean_Origin, y = Rating)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
+```
 
+Plot is difficult to get values from, will use less values to make more clear. I have experimented with 5 different values to see which can provide important informaion without overloading the user with unneeded data points. 
+
+```{r}
+ratings1 = choco[order(ave(choco$Rating), decreasing= TRUE), ]
+ratings1 = ratings[1:100, ]
+ggplot(ratings1, aes(x = Bean_Origin, y = Rating)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r}
+ratings2 = choco[order(ave(choco$Rating), decreasing= TRUE), ]
+ratings2 = ratings[1:75, ]
+ggplot(ratings2, aes(x = Bean_Origin, y = Rating)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r}
+ratings3 = choco[order(ave(choco$Rating), decreasing= TRUE), ]
+ratings3 = ratings[1:50, ]
+ggplot(ratings3, aes(x = Bean_Origin, y = Rating)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r}
+ratings4 = choco[order(ave(choco$Rating), decreasing= TRUE), ]
+ratings4 = ratings[1:25, ]
+ggplot(ratings4, aes(x = Bean_Origin, y = Rating)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r}
+ratings5 = choco[order(ave(choco$Rating), decreasing= TRUE), ]
+ratings5 = ratings[1:10, ]
+ggplot(ratings5, aes(x = Bean_Origin, y = Rating)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
+```
+
+#### 5
+1: Find best and worst average ratings to know which products to buy and avoid
+2: 
