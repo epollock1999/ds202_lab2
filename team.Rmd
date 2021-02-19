@@ -29,7 +29,6 @@ choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/mast
 We can see that there is little relationship between the Rating and the Cocoa Percentage. This can be seen in the scatter plot, bot plot, and value that we get from calling the cor function. When we look at the correlation value between the two variables, we get a result of -0.151, meaning that there is an extremely weak negative connection between the two. 
 
 ```{r}
-plot(choco$Rating, choco$Cocoa_Percent)
 boxplot(choco$Rating~choco$Cocoa_Percent)
 cor(choco$Rating, choco$Cocoa_Percent)
 ```
