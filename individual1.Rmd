@@ -5,7 +5,31 @@ date: "2/17/2021"
 output: html_document
 ---
 
-#lab 2
+##lab 2
+
+##Problem 1
+hist(choco$Rating)
+boxplot(choco$Rating)
+
+###Outliers exist from ratings 1 to 2. These outliers make the rating distribution left skewed on the histogram.
+
+##Problem 2
+barplot(table(choco$Location), las=2, cex.names = 0.5)
+
+###By far, the U.S. gets has the most chocolate ratings. This may demonstrate that chocolate from U.S. companies is more well-known and consumed more often than chocolate from other countries.
+
+###Problem 3
+barplot(table(choco$Cocoa_Percent), las=2, cex.names = 0.5)
+median(choco$Cocoa_Percent)
+
+###It appears that chocolate with a cocoa percent around 70 has the most ratings. This is probably because the most popular chocolate is made with 70 percent cocoa. 70 also happens to be the median of the cocoa percentages.
+
+###Problem 4
+barplot(table(choco$Bean_Origin, choco$Rating), las=2, cex.names = 1)
+plot(table(choco$Bean_Origin, choco$Rating), las=5)
+####
+
+###Problem 5
 
 
 
