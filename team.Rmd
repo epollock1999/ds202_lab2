@@ -32,7 +32,6 @@ We can see that there is little relationship between the Rating and the Cocoa Pe
 plot(choco$Rating, choco$Cocoa_Percent)
 boxplot(choco$Rating~choco$Cocoa_Percent)
 cor(choco$Rating, choco$Cocoa_Percent)
-summary(lm(Rating~Cocoa_Percent, data=choco))
 ```
 
 #### 4. How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.
