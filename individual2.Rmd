@@ -89,3 +89,12 @@ ggplot(ratings5, aes(x = Bean_Origin, y = Rating)) + geom_count()+theme(axis.tex
 #### 5
 1: Find best and worst average ratings to know which products to buy and avoid
 2: 
+
+
+```{r}
+Bean_Origin <- choco$Bean_Origin
+Cocoa_Percent <- choco$Cocoa_Percent
+cocoa = choco[order(ave(Cocoa_Percent), decreasing = TRUE), ]
+ggplot(cocoa, aes(x=Cocoa_Percent, y=Bean_Origin))+geom_count()+theme(axis.text.x = element_text(angle=90))
+
+```

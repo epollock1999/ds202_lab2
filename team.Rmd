@@ -18,11 +18,22 @@ choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/mast
 
 #### 1. How are the ratings distributed? Create both a histogram and a boxplot and describe them. Don’t forget to mention outliers, if there are any.
 
+Looking at the histogram, the ratings distribution is skewed to the left, and there is a gap where there are no ratings between 3.0 and 3.2. Outliers exist from ratings 1 to 2. These outliers make the rating distribution left skewed. The boxplot also shows these outliers clearly, as well as shows the median for ratings is around 3.3.
+
+```{r}
+hist(choco$Rating)
+boxplot(choco$Rating)
+```
 
 
 #### 2. How does the number of ratings depend on the location of the company? Draw a bar chart of the number of reports.
 
 
+By far, the U.S. gets has the most chocolate ratings. This may demonstrate that chocolate from U.S. companies is more well-known and consumed more often than chocolate from other countries.
+
+```{r}
+barplot(table(choco$Location), las=2, cex.names = 0.5, col='purple')
+```
 
 #### 3. Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. [Hint: Think about why the scatterplot is not a very good choice for visualization here.]
 
@@ -35,7 +46,38 @@ cor(choco$Rating, choco$Cocoa_Percent)
 
 #### 4. How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.
 
+The location that the bean comes from can have an impact on the rating of the flavor of the chocolate. By using both of the plots below we can gather information to make assumptions on how the location will impact the flavor rating on the chocolate. We can see that certain places such as Peru have many high scoring ratings, where as somewhere like Colombia has fewer highly rated chocolates. For the plot, I decided to only use the 50 highest rated chocolates as I feel that it still provides the reader with the important information but doesn't overload the graph with unneeded information. In the individual2.rmd file, I played around with plotting different sizes and came to the decision that using 50 provided the best experience. 
+
+```{r}
+library(ggplot2)
+ratings = choco[order(ave(choco$Rating), decreasing= TRUE), ]
+ratings = ratings[1:50, ]
+ggplot(ratings, aes(x = Bean_Origin, y = Rating))+geom_count()+theme(axis.text.x = element_text(angle = 90))
+boxplot(Rating~Bean_Origin, data=choco, las=2, cex.axis=0.5)
+```
+
 
 
 #### 5. Brainstorm two analyses you would like to perform (with your teammates). Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
 
+Analysis one: Does the company location have an effect on the chocolate rating? We want to know if companies at certain locations tend to make chocolate that is more favorable (has a higher rating) than others. From an earlier analysis, we found that countries like Venezuela and Papua New Guinea tend to have higher ratings for their cocoa beans. Perhaps the companies in those countries will have higher ratings for their chocolate.
+```{r}
+library(ggplot2)
+Location <- choco$Location 
+ratings = choco[order(ave(choco$Rating), decreasing= TRUE), ]
+ggplot(ratings, aes(x = Location, y = Rating)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
+
+```
+
+From the graph, we can see that companies in countries like the U.S., Finland and Canada not only have a lot of chocolate ratings, but also have a lot of high chocolate ratings. We may assume that these companies tend to use beans from more favorable origins, such as Venezuela and Papua New Guinea.
+
+Analysis two: Does the bean origin have an effect on the chocolate's cocoa percent? We want to know if the percent of cocoa in a chocolate bar is affected by the origin of its beans. 
+
+```{r}
+Bean_Origin <- choco$Bean_Origin
+Cocoa_Percent <- choco$Cocoa_Percent
+cocoa = choco[order(ave(choco$Cocoa_Percent), decreasing= TRUE), ]
+ggplot(cocoa, aes(x = Cocoa_Percent, y = Bean_Origin)) + geom_count()+theme(axis.text.x = element_text(angle = 90))
+```
+
+From the graph, we can see that many beans from several different countries end up in chocolate bars with around 70% cocoa. This may be due to the fact that 70% cocoa is the most common percent of cocoa for chocolate bars. Bean origin doesn't seem to have a high correlation with cocoa percent because the graph shows a wide range of cocoa percents for the beans from most countries. This could be because chocolate manufacturers don't determine cocoa percent for the chocolate by where the beans came from.
